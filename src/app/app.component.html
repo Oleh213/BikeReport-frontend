@@ -34,7 +34,7 @@
         </div>
       </div>
     </div>
-    <div class="button">
+    <div (click)="smoothScroll(document.getElementById('second')!)" class="button">
       <div class="button-text">Next step</div>
       <div class="icon">
         <div class="arrow"></div>
@@ -50,7 +50,7 @@
         <div class="ellipse"></div>
       </div>
     </div>
-    <div class="block2">
+    <div class="block2" id="second">
       <div class="block2-header">
         <div class="label-icon">
           <div class="label">Möchtest du ein Standard Service Paket buchen?</div>
@@ -59,28 +59,139 @@
         <div class="block2-text">Falls du mit Service Paketen nichts anfangen kannst, findest du weiter unten eine Auswahlliste mit verschiedenen Service Leistungen.</div>
       </div>
       <div class="block2-body">
-        <div class="services">
-          <div class="service"></div>
+        <div class="service-components">
+          <div class="service-component" *ngFor="let serviceComponent of serviceComponents">
+            <div class="block2-icon">Icon/ Illu</div>
+            <div class="block2-description">{{serviceComponent.name}}, ca. {{serviceComponent.price}} {{serviceComponent.currency}}</div>
+            <div class="block2-button"></div>
+          </div>
         </div>
       </div>
-      <div class="block2-footer"></div>
-
+      <div class="block2-footer">
+        <div class="options">
+          <div class="option">
+            <div class="options-icon"></div>
+            <div class="options-text">Kein Service Paket buchen</div>
+          </div>
+          <div class="option">
+            <div class="options-icon"></div>
+            <div class="options-text">Hat dein Velo einen Elektro Antrieb?</div>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="progress stage2">
       <div class="line"></div>
       <div class="ellipses">
-        <div class="ellipse activated"></div>
         <div class="ellipse"></div>
+        <div class="ellipse activated"></div>
         <div class="ellipse"></div>
         <div class="ellipse"></div>
         <div class="ellipse"></div>
       </div>
     </div>
-    <div class="button">
+    <div class="button" (click)="smoothScroll(document.getElementById('third')!)">
       <div class="button-text">Next step</div>
       <div class="icon">
         <div class="arrow"></div>
       </div>
     </div>
+    <div class="block3" id="third">
+      <div class="block3-header">
+        <div class="block3-label">Möchtest du nur einzelne Services buchen?</div>
+        <div class="block3-text">Eine Mehrfachauswahl ist möglich.</div>
+      </div>
+      <div class="block3-body">
+        <div class="packages">
+          <div class="package" *ngFor="let servicePackage of servicePackages">
+            <div class="package-icon"></div>
+            <div class="package-name">{{servicePackage.name}}</div>
+          </div>
+        </div>
+        <div class="block3-body-label">E-Velo: </div>
+        <div class="packages">
+          <div class="package" *ngFor="let servicePackage of servicePackagesForEbike">
+            <div class="package-icon"></div>
+            <div class="package-name">{{servicePackage.name}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="progress stage3" >
+      <div class="line"></div>
+      <div class="ellipses">
+        <div class="ellipse"></div>
+        <div class="ellipse"></div>
+        <div class="ellipse activated"></div>
+        <div class="ellipse"></div>
+        <div class="ellipse"></div>
+      </div>
+    </div>
+    <div class="button" (click)="smoothScroll(document.getElementById('fourth')!)" >
+      <div class="button-text">Next step</div>
+      <div class="icon">
+        <div class="arrow"></div>
+      </div>
+    </div>
+    <div class="block4" id="fourth">
+      <div class="block4-header">Möchtest du das Problem an deinem Velo noch näher beschreiben?</div>
+      <div class="block4-body">
+        <textarea class="textarea" placeholder="z.B. die Kette ist gerissen, ich habe einen Achter im Vorderrad."></textarea>
+        <div class="max-money">
+          <input type="number" class="max-money-input">
+          <div class="max-money-text">Hast du ein Kostendach?</div>
+        </div>
+      </div>
+    </div>
+    <div class="progress stage4" >
+      <div class="line"></div>
+      <div class="ellipses">
+        <div class="ellipse"></div>
+        <div class="ellipse"></div>
+        <div class="ellipse"></div>
+        <div class="ellipse activated"></div>
+        <div class="ellipse"></div>
+      </div>
+    </div>
+    <div class="button"  (click)="smoothScroll(document.getElementById('five')!)" >
+      <div class="button-text">Next step</div>
+      <div class="icon">
+        <div class="arrow"></div>
+      </div>
+    </div>
+    <div class="block5" id="five">
+      <div class="block5-header">Sag uns noch kurz etwas über dich:</div>
+      <div class="block5-body">
+        <input class="contact-info" type="text" placeholder="Vorname">
+        <input class="contact-info" type="text" placeholder="Strasse">
+        <input class="contact-info" type="number" placeholder="PLZ">
+        <input class="contact-info" type="email" placeholder="Email">
+        <input class="contact-info" type="text" placeholder="Nachname">
+        <input class="contact-info" type="text" placeholder="Nr">
+        <input class="contact-info" type="text" placeholder="Ort">
+        <input class="contact-info" type="number" placeholder="Telefon">
+      </div>
+    </div>
+    <div class="progress stage5" >
+      <div class="line"></div>
+      <div class="ellipses">
+        <div class="ellipse"></div>
+        <div class="ellipse"></div>
+        <div class="ellipse"></div>
+        <div class="ellipse"></div>
+        <div class="ellipse activated"></div>
+      </div>
+    </div>
+    <div class="submit-button">
+      <div class="submit-button-text"> Servicedaten hochladen und Angebote erhalten</div>
+    </div>
+
+  </div>
+  <div class="footer">
+    <div class="logo">
+      <div class="text">CYCLIX</div>
+      <div class="underline"></div>
+    </div>
+
   </div>
 </div>

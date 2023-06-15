@@ -1,11 +1,17 @@
 @import url(//db.onlinewebfonts.com/c/917a69d24b88e2d4d2ca803c0605bd59?family=CeraPRO-Regular);
+
 @font-face {
-  font-family: cerapro;
-  src: url(assets/fonts/Fontspring-DEMO-cerapro-medium.otf) format("opentype");
+  font-family: "Cera Pro";
+  src: url('assets/fonts/Cera Pro Light.otf');
+  font-weight: normal;
+  font-style: normal;
 }
 @font-face {
-  font-family: cerapro, sans-serif;
+  font-family: "Cera Pro";
+  src: url('assets/fonts/Cera Pro Bold.otf');
+  font-weight: bold;
 }
+
 ///---- clean style -----///
 *{ box-sizing:border-box;
   background-color:transparent;
