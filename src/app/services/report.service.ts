@@ -6,6 +6,7 @@ import {STORE_API_URL} from "../envirements/app-injections-tokens";
 import {BikeBrand} from "../models/bikeBrand";
 import {ServiceComponent} from "../models/serviceComponent";
 import {ServicePackage} from "../models/servicePackage";
+import {Report} from "../models/report";
 
 @Injectable({
   providedIn: 'root'
@@ -30,5 +31,9 @@ export class ReportService {
   getAllBikeBrands(): Observable<BikeBrand[]>
   {
     return this.http.get<BikeBrand[]>(`${this.baseApiUrl}ReportController/GetAllBikeBrands`)
+  }
+  sentReport(report: Report): Observable<boolean>
+  {
+    return this.http.post<boolean>(`${this.baseApiUrl}ReportController/SentReport`, report)
   }
 }

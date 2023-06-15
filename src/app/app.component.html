@@ -16,7 +16,7 @@
             <dx-select-box
               [dataSource]="bikeTypes"
               displayExpr="name"
-              valueExpr="name"
+              (onItemClick)="report.bikeTypeId = $event.itemData.bikeTypeId"
               [value]="bikeBrands[0].name"
             ></dx-select-box>
           </div>
@@ -27,7 +27,7 @@
             <dx-select-box
               [dataSource]="bikeBrands"
               displayExpr="name"
-              valueExpr="name"
+              (onItemClick)="report.bikeBrandId = $event.itemData.bikeBrandId"
               [value]="bikeBrands[0].name"
             ></dx-select-box>
           </div>
@@ -63,19 +63,21 @@
           <div class="service-component" *ngFor="let serviceComponent of serviceComponents">
             <div class="block2-icon">Icon/ Illu</div>
             <div class="block2-description">{{serviceComponent.name}}, ca. {{serviceComponent.price}} {{serviceComponent.currency}}</div>
-            <div class="block2-button"></div>
+            <div class="block2-button"   (click)="report.serviceComponentId = serviceComponent.serviceComponentId">
+              <div class="dot" *ngIf="report.serviceComponentId === serviceComponent.serviceComponentId"></div>
+            </div>
           </div>
         </div>
       </div>
       <div class="block2-footer">
         <div class="options">
           <div class="option">
-            <div class="options-icon"></div>
+            <div class="options-icon" (click)="report.addPackages = !report.addPackages"  [ngClass]="{'selected': !report.addPackages}"><div *ngIf="!report.addPackages" class="checkmark"></div></div>
             <div class="options-text">Kein Service Paket buchen</div>
           </div>
           <div class="option">
-            <div class="options-icon"></div>
-            <div class="options-text">Hat dein Velo einen Elektro Antrieb?</div>
+            <div class="options-icon"  (click)="report.ebike = !report.ebike" [ngClass]="{'selected': report.ebike}"><div *ngIf="report.ebike" class="checkmark"></div></div>
+            <div class="options-text" >Hat dein Velo einen Elektro Antrieb?</div>
           </div>
         </div>
       </div>
@@ -104,14 +106,14 @@
       <div class="block3-body">
         <div class="packages">
           <div class="package" *ngFor="let servicePackage of servicePackages">
-            <div class="package-icon"></div>
+            <div class="package-icon" (click)="addPackages(servicePackage)" [ngClass]="{'selected': checkPackage(servicePackage)}"><div *ngIf="checkPackage(servicePackage)" class="checkmark"></div> </div>
             <div class="package-name">{{servicePackage.name}}</div>
           </div>
         </div>
         <div class="block3-body-label">E-Velo: </div>
         <div class="packages">
           <div class="package" *ngFor="let servicePackage of servicePackagesForEbike">
-            <div class="package-icon"></div>
+            <div class="package-icon" (click)="addPackages(servicePackage)" [ngClass]="{'selected': checkPackage(servicePackage)}"><div *ngIf="checkPackage(servicePackage)" class="checkmark"></div> </div>
             <div class="package-name">{{servicePackage.name}}</div>
           </div>
         </div>
@@ -136,9 +138,9 @@
     <div class="block4" id="fourth">
       <div class="block4-header">Möchtest du das Problem an deinem Velo noch näher beschreiben?</div>
       <div class="block4-body">
-        <textarea class="textarea" placeholder="z.B. die Kette ist gerissen, ich habe einen Achter im Vorderrad."></textarea>
+        <textarea class="textarea" [(ngModel)]="report.message" placeholder="z.B. die Kette ist gerissen, ich habe einen Achter im Vorderrad."></textarea>
         <div class="max-money">
-          <input type="number" class="max-money-input">
+          <input type="number" class="max-money-input" [(ngModel)]="report.maxMoney">
           <div class="max-money-text">Hast du ein Kostendach?</div>
         </div>
       </div>
@@ -162,14 +164,14 @@
     <div class="block5" id="five">
       <div class="block5-header">Sag uns noch kurz etwas über dich:</div>
       <div class="block5-body">
-        <input class="contact-info" type="text" placeholder="Vorname">
-        <input class="contact-info" type="text" placeholder="Strasse">
-        <input class="contact-info" type="number" placeholder="PLZ">
-        <input class="contact-info" type="email" placeholder="Email">
-        <input class="contact-info" type="text" placeholder="Nachname">
-        <input class="contact-info" type="text" placeholder="Nr">
-        <input class="contact-info" type="text" placeholder="Ort">
-        <input class="contact-info" type="number" placeholder="Telefon">
+        <input class="contact-info" [(ngModel)]="report.name" type="text" placeholder="Vorname">
+        <input class="contact-info" [(ngModel)]="report.street" type="text" placeholder="Strasse">
+        <input class="contact-info" [(ngModel)]="report.zip" type="text" placeholder="PLZ">
+        <input class="contact-info" [(ngModel)]="report.email" type="text" placeholder="Email">
+        <input class="contact-info" [(ngModel)]="report.sureName"  type="text" placeholder="Nachname">
+        <input class="contact-info" [(ngModel)]="report.street2"  type="text" placeholder="Nr">
+        <input class="contact-info" [(ngModel)]="report.city"  type="text" placeholder="Ort">
+        <input class="contact-info" [(ngModel)]="report.phone"  type="text" placeholder="Telefon">
       </div>
     </div>
     <div class="progress stage5" >
@@ -182,10 +184,9 @@
         <div class="ellipse activated"></div>
       </div>
     </div>
-    <div class="submit-button">
+    <div class="submit-button" (click)="submit()">
       <div class="submit-button-text"> Servicedaten hochladen und Angebote erhalten</div>
     </div>
-
   </div>
   <div class="footer">
     <div class="logo">

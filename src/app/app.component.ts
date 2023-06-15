@@ -2,10 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {ReportService} from "./services/report.service";
 import {BikeType} from "./models/bikeType";
 import {BikeBrand} from "./models/bikeBrand";
-import {Guid} from "guid-typescript";
 import {ServiceComponent} from "./models/serviceComponent";
 import {forkJoin} from "rxjs";
 import {ServicePackage} from "./models/servicePackage";
+import {Report} from "./models/report";
 
 @Component({
   selector: 'app-root',
@@ -18,6 +18,7 @@ export class AppComponent implements OnInit{
   public serviceComponents: ServiceComponent[]= [];
   public servicePackagesForEbike: ServicePackage[] = [];
   public servicePackages: ServicePackage[] = [];
+  public report: Report = new Report();
   constructor(private reportService: ReportService) {
   }
   ngOnInit(): void {
@@ -31,7 +32,6 @@ export class AppComponent implements OnInit{
         this.bikeTypes = bikeTypes;
         this.servicePackages = servicePackages.filter(x=> x.electroBike !== true);
         this.servicePackagesForEbike = servicePackages.filter(x=> x.electroBike === true)
-        console.log(serviceComponents);
     });
   }
    smoothScroll(target: HTMLElement): void {
@@ -58,6 +58,44 @@ export class AppComponent implements OnInit{
       }, 20);
     };
     scroll(scrollContainer, scrollContainer.scrollTop, targetY, 0);
+  }
+
+  addPackages(servicePackage: ServicePackage){
+    if(this.report.servicePackages !== undefined &&  this.report.servicePackages.some(x=> x.servicePackageId === servicePackage.servicePackageId)){
+      this.report.servicePackages = this.report.servicePackages.filter(x=> x.servicePackageId !== servicePackage.servicePackageId);
+    }
+    else {
+      this.report.servicePackages!.push(servicePackage);
+    }
+  }
+  checkSubmit():boolean{
+    let reportmodel = this.report;
+    if (
+      !reportmodel.city ||
+      !reportmodel.zip ||
+      !reportmodel.street ||
+      !reportmodel.street2 ||
+      !reportmodel.sureName ||
+      !reportmodel.phone ||
+      !reportmodel.email ||
+      !reportmodel.name
+    ) {
+      return false;
+    }
+    return !(reportmodel.addPackages && reportmodel.servicePackages === undefined);
+
+  }
+  submit(){
+    if(this.checkSubmit()){
+      this.reportService.sentReport(this.report).subscribe(res=> {
+        console.log('Report sent!')
+      });
+    }
+    else console.log("Error! Fill all data!")
+  }
+
+  checkPackage(servicePackage: ServicePackage):boolean{
+    return this.report.servicePackages!.some(x=> x.servicePackageId === servicePackage.servicePackageId)
   }
 
   protected readonly document = document;

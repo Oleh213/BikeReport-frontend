@@ -8,6 +8,7 @@ import {AUTH_API_URL, STORE_API_URL} from "./envirements/app-injections-tokens";
 import {ReportService} from "./services/report.service";
 import {environment} from "./envirements/envirement";
 import {HttpClientModule} from "@angular/common/http";
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import {HttpClientModule} from "@angular/common/http";
     DxDropDownButtonModule,
     HttpClientModule,
     DxSelectBoxModule,
+    FormsModule,
 
   ],
   providers: [{
