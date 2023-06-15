@@ -1,0 +1,55 @@
+@import url(//db.onlinewebfonts.com/c/917a69d24b88e2d4d2ca803c0605bd59?family=CeraPRO-Regular);
+@font-face {
+  font-family: cerapro;
+  src: url(assets/fonts/Fontspring-DEMO-cerapro-medium.otf) format("opentype");
+}
+@font-face {
+  font-family: cerapro, sans-serif;
+}
+///---- clean style -----///
+*{ box-sizing:border-box;
+  background-color:transparent;
+  -webkit-user-select: none;
+  -moz-user-select: auto;
+  /*IE10*/
+  -ms-user-select: none;
+  user-select: none;
+
+  /*You just need this if you are only concerned with android and not desktop browsers.*/
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+*,
+*:before,
+*:after {padding: 0;margin: 0;box-sizing: border-box;
+}
+a,a:visited{text-decoration:none;}
+html,
+body {height: 100%;
+  font-family: cerapro, sans-serif;
+  color: #2c3b37;
+  font-size: 16px;
+  line-height: 24px;
+  cursor: default;
+}
+body.modal-open {
+  overflow: hidden;
+}
+a {
+  color: hwb(12 18% 75%);
+}
+h1 {
+  font-size: 40px;
+  line-height: 1;
+  margin: 0 0 50px 0;
+  color: #2c3b37;
+}
+h2 {
+  font-size: 30px;
+  line-height: 1;
+  margin: 0 0 20px 0;
+}
+ul {
+  list-style: none;
+}
+
+

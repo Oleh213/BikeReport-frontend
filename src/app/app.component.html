@@ -1,0 +1,86 @@
+<div class="container">
+  <div class="header">
+    <div class="logo">
+      <div class="text">CYCLIX</div>
+      <div class="underline"></div>
+    </div>
+  </div>
+  <div class="body">
+    <div class="logo">Erzähl uns etwas über dein Velo.</div>
+    <div class="block1">
+      <div class="label">Felder mit einem  sind Pflichtfelder</div>
+      <div class="selection-container item">
+        <div class="left-container item">
+          <div class="left-label label-block1">Kennst du deinen Velo Typ?</div>
+          <div class="select-box">
+            <dx-select-box
+              [dataSource]="bikeTypes"
+              displayExpr="name"
+              valueExpr="name"
+              [value]="bikeBrands[0].name"
+            ></dx-select-box>
+          </div>
+        </div>
+        <div class="right-container item">
+          <div class="right-label label-block1">Welche Marke ist dein Velo?</div>
+          <div class="select-box">
+            <dx-select-box
+              [dataSource]="bikeBrands"
+              displayExpr="name"
+              valueExpr="name"
+              [value]="bikeBrands[0].name"
+            ></dx-select-box>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="button">
+      <div class="button-text">Next step</div>
+      <div class="icon">
+        <div class="arrow"></div>
+      </div>
+    </div>
+    <div class="progress">
+      <div class="line"></div>
+      <div class="ellipses">
+        <div class="ellipse activated"></div>
+        <div class="ellipse"></div>
+        <div class="ellipse"></div>
+        <div class="ellipse"></div>
+        <div class="ellipse"></div>
+      </div>
+    </div>
+    <div class="block2">
+      <div class="block2-header">
+        <div class="label-icon">
+          <div class="label">Möchtest du ein Standard Service Paket buchen?</div>
+          <div class="icon">?</div>
+        </div>
+        <div class="block2-text">Falls du mit Service Paketen nichts anfangen kannst, findest du weiter unten eine Auswahlliste mit verschiedenen Service Leistungen.</div>
+      </div>
+      <div class="block2-body">
+        <div class="services">
+          <div class="service"></div>
+        </div>
+      </div>
+      <div class="block2-footer"></div>
+
+    </div>
+    <div class="progress stage2">
+      <div class="line"></div>
+      <div class="ellipses">
+        <div class="ellipse activated"></div>
+        <div class="ellipse"></div>
+        <div class="ellipse"></div>
+        <div class="ellipse"></div>
+        <div class="ellipse"></div>
+      </div>
+    </div>
+    <div class="button">
+      <div class="button-text">Next step</div>
+      <div class="icon">
+        <div class="arrow"></div>
+      </div>
+    </div>
+  </div>
+</div>
